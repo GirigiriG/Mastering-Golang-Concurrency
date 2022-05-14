@@ -5,9 +5,7 @@ import (
 )
 
 func main() {
-
 	fanCh := fanIn(fanInGenerator(23), fanInGenerator(66))
-
 	for cc := range fanCh {
 		fmt.Println(cc)
 	}
@@ -36,7 +34,6 @@ func fanIn(gens ...<-chan int32) <-chan int32 {
 			}
 			close(out)
 		}(ch)
-
 	}
 
 	return out
