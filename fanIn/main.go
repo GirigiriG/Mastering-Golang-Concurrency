@@ -12,15 +12,15 @@ func main() {
 }
 
 func fanInGenerator(data int32) <-chan int32 {
-	ch := make(chan int32)
+	out := make(chan int32)
 	go func(data int32) {
 		for i := 0; i < 5; i++ {
-			ch <- data
+			out <- data
 		}
-		close(ch)
+		close(out)
 	}(data)
 
-	return ch
+	return out
 }
 
 func fanIn(gens ...<-chan int32) <-chan int32 {
