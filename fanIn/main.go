@@ -29,8 +29,8 @@ func fanIn(gens ...<-chan int32) <-chan int32 {
 
 	for _, ch := range gens {
 		go func(cc <-chan int32) {
-			for i := 0; i < 5; i++ {
-				out <- <-cc
+			for data := range cc {
+				out <- data
 			}
 			close(out)
 		}(ch)
